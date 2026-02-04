@@ -106,6 +106,8 @@
 <audio id="spinSound" src="spin.mp3" preload="auto"></audio>
 <audio id="winSound" src="win.mp3" preload="auto"></audio>
 <audio id="bgMusic" src="bg.mp3" preload="auto" loop></audio>
+<audio id="yesSound" src="yes.mp3" preload="auto"></audio>
+
 
 <div id="startOverlay" style="
   position: fixed;
@@ -133,7 +135,7 @@
 <!-- PAGE 1 -->
 <div id="page1" class="page active">
   <h1>💘 Will you be my Valentine?</h1>
-<button class="yes" onclick="startExperience(); goTo(2)">Yes 💚</button>
+<button class="yes" onclick="startExperience(); playYes(); goTo(2)">Yes 💚</button>
 <button class="no" onclick="startExperience(); goTo(3)">No 😈</button>
 
 </div>
@@ -230,11 +232,19 @@ function startExperience() {
   if (overlay) overlay.style.display = "none";
 }
 
+function playYes() {
+  const yes = document.getElementById("yesSound");
+  yes.currentTime = 0;
+  yes.volume = 0.7;
+  yes.play();
+}
+
   
 </script>
 
 </body>
 </html>
+
 
 
 
