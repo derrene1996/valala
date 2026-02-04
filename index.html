@@ -133,8 +133,9 @@
 <!-- PAGE 1 -->
 <div id="page1" class="page active">
   <h1>💘 Will you be my Valentine?</h1>
-  <button class="yes" onclick="goTo(2)">Yes 💚</button>
-  <button class="no" onclick="goTo(3)">No 😈</button>
+<button class="yes" onclick="startExperience(); goTo(2)">Yes 💚</button>
+<button class="no" onclick="startExperience(); goTo(3)">No 😈</button>
+
 </div>
 
 <!-- PAGE 2 (DIRECT YES) -->
@@ -161,7 +162,8 @@
     <div id="wheel" class="wheel"></div>
   </div>
 
-  <button id="spinBtn" class="yes" onclick="spin()">SPIN 🌀</button>
+  <button id="spinBtn" class="yes" onclick="startExperience(); spin()">SPIN 🌀</button>
+
 
   <div id="result" class="result">
     💚 Fate has spoken. You’re my Valentine.
@@ -214,11 +216,18 @@ function spin() {
 }
 
 
+let bgStarted = false;
+
 function startExperience() {
+  if (bgStarted) return;
+  bgStarted = true;
+
   const bg = document.getElementById("bgMusic");
-  bg.volume = 0.18;
-  bg.play().catch(() => {});
-  document.getElementById("startOverlay").style.display = "none";
+  bg.volume = 0.35; // testweise etwas lauter
+  bg.play().catch(e => console.log("BG blocked:", e));
+
+  const overlay = document.getElementById("startOverlay");
+  if (overlay) overlay.style.display = "none";
 }
 
   
@@ -226,5 +235,6 @@ function startExperience() {
 
 </body>
 </html>
+
 
 
