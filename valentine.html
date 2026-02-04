@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Valentine</title>
+
+<style>
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: radial-gradient(circle at top, #0f172a, #020617);
+    color: #e5e7eb;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .page {
+    display: none;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .page.active {
+    display: block;
+  }
+
+  h1 {
+    margin-bottom: 10px;
+  }
+
+  p {
+    opacity: 0.8;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    font-size: 18px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .yes {
+    background: #22c55e;
+    color: #052e16;
+  }
+
+  .no {
+    background: #dc2626;
+    color: #fee2e2;
+  }
+
+  .neutral {
+    background: #334155;
+    color: #e5e7eb;
+  }
+
+  /* ===== WHEEL ===== */
+
+  .wheel-container {
+    margin: 40px auto;
+    width: 260px;
+    height: 260-lpx;
+    position: relative;
+  }
+
+  .pointer {
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 26px;
+    z-index: 10;
+  }
+
+  .wheel {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: conic-gradient(
+      #dc2626 0deg 288deg,    /* NO 80% */
+      #16a34a 288deg 360deg  /* YES 20% */
+    );
+    transition: transform 4.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  .result {
+    margin-top: 25px;
+    font-size: 22px;
+    color: #4ade80;
+    display: none;
+  }
+
+  .small {
+    font-size: 12px;
+    opacity: 0.55;
+    margin-top: 8px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+  <h1>💘 Will you be my Valentine?</h1>
+  <button class="yes" onclick="goTo(2)">Yes 💚</button>
+  <button class="no" onclick="goTo(3)">No 😈</button>
+</div>
+
+<!-- PAGE 2 (DIRECT YES) -->
+<div id="page2" class="page">
+  <h1>💚 Valentine confirmed.</h1>
+  <p>You chose wisely.</p>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="page">
+  <h1>🤨 Are you sure?</h1>
+  <p>This decision feels… unstable.</p>
+  <button class="neutral" onclick="goTo(1)">No, not really 😅</button>
+  <button class="neutral" onclick="goTo(4)">Let fate decide 🎲</button>
+</div>
+
+<!-- PAGE 4 (WHEEL) -->
+<div id="page4" class="page">
+  <h1>💘 Will you be my Valentine?</h1>
+  <p>Let fate decide.</p>
+
+  <div class="wheel-container">
+    <div class="pointer">▼</div>
+    <div id="wheel" class="wheel"></div>
+  </div>
+
+  <button id="spinBtn" class="yes" onclick="spin()">SPIN 🌀</button>
+
+  <div id="result" class="result">
+    💚 Fate has spoken. You’re my Valentine.
+    <div class="small">(Probability was adjusted.)</div>
+  </div>
+</div>
+
+<script>
+  function goTo(page) {
+    document.querySelectorAll(".page").forEach(p =>
+      p.classList.remove("active")
+    );
+    document.getElementById("page" + page).classList.add("active");
+  }
+
+  function spin() {
+    const wheel = document.getElementById("wheel");
+    const btn = document.getElementById("spinBtn");
+    const result = document.getElementById("result");
+
+    btn.disabled = true;
+
+    /*
+      Green slice: 288° → 360°
+      Middle of green = 324°
+      Pointer fixed at 0° (top)
+      Rotate wheel so 324° lands at top
+    */
+
+    const fullSpins = 6 * 360;
+    const greenCenter = 324;
+    const fakeRandom = Math.random() * 10 - 5;
+
+    const finalRotation = fullSpins - greenCenter + fakeRandom;
+
+    wheel.style.transform = `rotate(${finalRotation}deg)`;
+
+    setTimeout(() => {
+      result.style.display = "block";
+    }, 4400);
+  }
+</script>
+
+</body>
+</html>
