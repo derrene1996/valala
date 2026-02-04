@@ -105,6 +105,31 @@
 <body>
 <audio id="spinSound" src="spin.mp3" preload="auto"></audio>
 <audio id="winSound" src="win.mp3" preload="auto"></audio>
+<audio id="bgMusic" src="bg.mp3" preload="auto" loop></audio>
+
+<div id="startOverlay" style="
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+">
+  <button style="
+    padding: 18px 36px;
+    font-size: 20px;
+    border-radius: 999px;
+    border: none;
+    background: #22c55e;
+    color: #052e16;
+    cursor: pointer;
+  " onclick="startExperience()">
+    Start 💚
+  </button>
+</div>
+
+  
 <!-- PAGE 1 -->
 <div id="page1" class="page active">
   <h1>💘 Will you be my Valentine?</h1>
@@ -187,7 +212,18 @@ function spin() {
     result.style.display = "block";
   }, 6900); // MUSS zur CSS-Dauer passen
 }
+
+
+function startExperience() {
+  const bg = document.getElementById("bgMusic");
+  bg.volume = 0.18;
+  bg.play().catch(() => {});
+  document.getElementById("startOverlay").style.display = "none";
+}
+
+  
 </script>
 
 </body>
 </html>
+
