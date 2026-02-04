@@ -84,7 +84,7 @@
       #dc2626 0deg 288deg,    /* NO 80% */
       #16a34a 288deg 360deg  /* YES 20% */
     );
-    transition: transform 4.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition: transform 6.8s cubic-bezier(0.22, 0.61, 0.36, 1);
   }
 
   .result {
@@ -151,32 +151,41 @@
     document.getElementById("page" + page).classList.add("active");
   }
 
-  function spin() {
-    const wheel = document.getElementById("wheel");
-    const btn = document.getElementById("spinBtn");
-    const result = document.getElementById("result");
+function spin() {
+  const wheel = document.getElementById("wheel");
+  const btn = document.getElementById("spinBtn");
+  const result = document.getElementById("result");
 
-    btn.disabled = true;
+  const spinSound = document.getElementById("spinSound");
+  const winSound = document.getElementById("winSound");
 
-    /*
-      Green slice: 288° → 360°
-      Middle of green = 324°
-      Pointer fixed at 0° (top)
-      Rotate wheel so 324° lands at top
-    */
+  btn.disabled = true;
+  result.style.display = "none";
 
-    const fullSpins = 6 * 360;
-    const greenCenter = 324;
-    const fakeRandom = Math.random() * 10 - 5;
+  // Reset & play spinning sound
+  spinSound.currentTime = 0;
+  spinSound.loop = true;
+  spinSound.play();
 
-    const finalRotation = fullSpins - greenCenter + fakeRandom;
+  const fullSpins = 12 * 360;
+  const greenCenter = 324;
+  const fakeRandom = Math.random() * 10 - 5;
+  const finalRotation = fullSpins - greenCenter + fakeRandom;
 
-    wheel.style.transform = `rotate(${finalRotation}deg)`;
+  wheel.style.transform = `rotate(${finalRotation}deg)`;
 
-    setTimeout(() => {
-      result.style.display = "block";
-    }, 4400);
-  }
+  setTimeout(() => {
+    spinSound.pause();
+    spinSound.currentTime = 0;
+
+    if (winSound) {
+      winSound.currentTime = 0;
+      winSound.play();
+    }
+
+    result.style.display = "block";
+  }, 6900); // MUSS zur CSS-Dauer passen
+}
 </script>
 
 </body>
