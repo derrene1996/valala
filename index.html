@@ -155,6 +155,22 @@
   100% { background-position: center top; }
 }
 
+#startOverlay {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(15,23,42,0.65), rgba(2,6,23,0.75)),
+    url("start.jpg") center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+
+
+
+
 
 
 </style>
@@ -167,17 +183,8 @@
 <audio id="yesSound" src="yes.mp3" preload="auto"></audio>
 
 
-<div id="startOverlay" style="
-  position: fixed;
-  inset: 0;
-  background:
-    linear-gradient(rgba(15,23,42,0.65), rgba(2,6,23,0.75)),
-    url('start.jpg') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-">
+<div id="startOverlay">
+
 
   <button style="
     padding: 18px 36px;
@@ -322,15 +329,7 @@ function yesEffect(button) {
 }
 
 
-  // Glow
-  button.classList.add("flash");
-  setTimeout(() => button.classList.remove("flash"), 800);
-
-  // Text
-  const text = document.getElementById("excellentText");
-  text.classList.add("show");
-}
-
+  
   
 function showExcellent() {
   const text = document.getElementById("excellentText");
@@ -348,6 +347,7 @@ function showExcellent() {
 
 </body>
 </html>
+
 
 
 
