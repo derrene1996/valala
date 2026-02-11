@@ -162,10 +162,10 @@
 <!-- PAGE 1 -->
 <div id="page1" class="page active">
   <h1>💘 Will you be my Valentine?</h1>
-<button class="yes"
-  onclick="startExperience(); playYes(); goTo(2); setTimeout(showExcellent, 300)">
+<button class="yes" onclick="startExperience(); yesEffect(this); goTo(2)">
   Yes 💚
 </button>
+
 
 
 <button class="no" onclick="startExperience(); goTo(3)">No 😈</button>
@@ -267,21 +267,26 @@ function startExperience() {
   if (overlay) overlay.style.display = "none";
 }
 
-function playYes() {
+
+
+function yesEffect(button) {
   const yes = document.getElementById("yesSound");
+  if (!yes) return;
+
+  yes.load();
   yes.currentTime = 0;
   yes.volume = 0.7;
   yes.play();
+
+  // Glow
+  button.classList.add("flash");
+  setTimeout(() => button.classList.remove("flash"), 800);
+
+  // Text
+  const text = document.getElementById("excellentText");
+  if (text) text.classList.add("show");
 }
 
-function yesEffect(button) {
-  // Sound
-  const yes = document.getElementById("yesSound");
-  if (yes) {
-    yes.currentTime = 0;
-    yes.volume = 0.7;
-    yes.play();
-  }
 
   // Glow
   button.classList.add("flash");
@@ -309,6 +314,7 @@ function showExcellent() {
 
 </body>
 </html>
+
 
 
 
