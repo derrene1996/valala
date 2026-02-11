@@ -127,8 +127,10 @@
   opacity: 1;
 }
 
-/* ===== FINAL PAGE BACKGROUND ===== */
-#page4 {
+
+
+/* ===== FINAL BACKGROUND (shared) ===== */
+.final-bg {
   background:
     linear-gradient(rgba(15,23,42,0.65), rgba(2,6,23,0.85)),
     url("final.jpg") center / cover no-repeat;
@@ -139,6 +141,7 @@
     fadeInBg 1s ease,
     floatBg 18s ease-in-out infinite;
 }
+
 
 
 @keyframes fadeInBg {
@@ -221,7 +224,7 @@
 </div>
 
 <!-- PAGE 2 (DIRECT YES) -->
-<div id="page2" class="page">
+<div id="page2" class="page final-bg">
   <h1>💚 Valentine confirmed.</h1>
   <p>You chose wisely.</p>
   <div id="excellentText" class="excellent">✨ Excellent choice schatziiiii.</div>
@@ -236,7 +239,7 @@
 </div>
 
 <!-- PAGE 4 (WHEEL) -->
-<div id="page4" class="page">
+<div id="page4" class="page final-bg">
   <h1>💘 Will you be my Valentine?</h1>
   <p>Let fate decide.</p>
 
@@ -352,6 +355,7 @@ function showExcellent() {
 
 </body>
 </html>
+
 
 
 
