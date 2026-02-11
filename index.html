@@ -123,6 +123,40 @@
   opacity: 1;
 }
 
+/* ===== FINAL PAGE BACKGROUND ===== */
+#page4 {
+  background:
+    linear-gradient(rgba(15,23,42,0.65), rgba(2,6,23,0.85)),
+    url("final.jpg") center/cover no-repeat;
+  padding: 60px 20px;
+  border-radius: 24px;
+  animation: fadeInBg 1s ease;
+}
+
+@keyframes fadeInBg {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#page4 {
+  background-size: 110%;
+  animation: floatBg 18s ease-in-out infinite;
+}
+
+@keyframes floatBg {
+  0%   { background-position: center top; }
+  50%  { background-position: center bottom; }
+  100% { background-position: center top; }
+}
+
+
+
 </style>
 </head>
 
@@ -314,6 +348,7 @@ function showExcellent() {
 
 </body>
 </html>
+
 
 
 
