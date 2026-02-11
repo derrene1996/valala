@@ -127,11 +127,15 @@
 #page4 {
   background:
     linear-gradient(rgba(15,23,42,0.65), rgba(2,6,23,0.85)),
-    url("final.jpg") center/cover no-repeat;
+    url("final.jpg") center / cover no-repeat;
+  background-size: 110%;
   padding: 60px 20px;
   border-radius: 24px;
-  animation: fadeInBg 1s ease;
+  animation:
+    fadeInBg 1s ease,
+    floatBg 18s ease-in-out infinite;
 }
+
 
 @keyframes fadeInBg {
   from {
@@ -144,10 +148,7 @@
   }
 }
 
-#page4 {
-  background-size: 110%;
-  animation: floatBg 18s ease-in-out infinite;
-}
+
 
 @keyframes floatBg {
   0%   { background-position: center top; }
@@ -347,6 +348,7 @@ function showExcellent() {
 
 </body>
 </html>
+
 
 
 
